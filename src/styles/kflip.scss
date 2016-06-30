@@ -1,0 +1,75 @@
+[id^="page-"] {
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-family: sans-serif;
+  padding: 15px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  transition: transform 1s, opacity 1s;
+}
+
+#main {
+  perspective: 1000px;
+}
+
+/* FromRight */
+[id^="page-"].fromRight {
+  transform: translate3d( 100%, 0, 0 );
+}
+
+[id^="page-"].fromRight-out {
+  transform: translate3d( -100%, 0, 0 );
+}
+
+/* FromLeft */
+[id^="page-"].fromLeft {
+  transform: translate3d( -100%, 0, 0 );
+}
+
+[id^="page-"].fromLeft-out {
+  transform: translate3d( 100%, 0, 0 );
+}
+
+/* FromTop */
+[id^="page-"].fromTop {
+  transform: translate3d( 0, -100%, 0 );
+}
+
+[id^="page-"].fromTop-out {
+  transform: translate3d( 0, 100%, 0 );
+}
+
+/* FilpLeft */
+[id^="page-"].flipFromRight {
+  transform: rotateY(180deg) scale(0);
+  opacity: 0;
+}
+
+[id^="page-"].flipFromRight-out {
+  transform: rotateY(-180deg) scale(0);
+  opacity: 0;
+}
+
+/* FlipTop */
+[id^="page-"].flipFromTop {
+  transform: rotateX(180deg) scale(0);
+  opacity: 0;
+}
+
+[id^="page-"].flipFromTop-out {
+  transform: rotateX(-180deg) scale(0);
+  opacity: 0;
+}
+
+
+[id^="page-"].animationing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
