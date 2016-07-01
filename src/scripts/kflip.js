@@ -113,32 +113,4 @@ const KFlip = function( $objContext ){
 }
 
 
-var pageFlip = new KFlip('#main');
-
-// Sequence Animation
-var listAnimation = [
-  { id: "1", animation: "fromRight"},
-  { id: "2", animation: "flipFromRight"},
-  { id: "3", animation: "flipFromTop"},
-  { id: "4", animation: "fromTop"},
-  { id: "2", animation: "fromRight"},
-  { back: true },
-  { back: true },
-  { back: true },
-  { back: true },
-  { back: true }
-];
-
-
-var count = 0;
-while( listAnimation.length > 0 ) {
-  let data = listAnimation.shift();
-  setTimeout( function() {
-    if( 'back' in data ) {
-      pageFlip.prevPage();
-    } else {
-      pageFlip.gotoPage( data.id, data.animation );
-    }
-  }, 1500 * count);
-  count++;
-}
+console.log('test');

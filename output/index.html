@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+  <title>KFlip | Transition Pages</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="./src/styles/kflip.css">
+  <style type="text/css" media="screen">
+    html {
+    height: 100%;
+    }
+    body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    background-color: #222;
+    }
+    #main {
+    height: 100%;
+    }
+    #page-1 {
+    background-color: pink;
+    }
+    #page-2 {
+    background-color: green;
+    }
+    #page-3 {
+    background-color: yellow;
+    }
+    #page-4 {
+    background-color: red;
+    }
+  </style>
+</head>
+<div id="main"></div>
+<script src="./src/scripts/kflip.js"></script>
+<script>
+  'user strict';
+  console.log('Start Inline Scripts on Templates HTML.');
+  var pageFlip = new KFlip('#main');
+  // Sequence Animation
+  var listAnimation = [
+  { id: "1", animation: "fromRight"},
+  { id: "2", animation: "flipFromRight"}
+  //- { id: "3", animation: "flipFromTop"},
+  //- { id: "4", animation: "fromTop"},
+  //- { id: "2", animation: "fromRight"},
+  //- { back: true },
+  //- { back: true },
+  //- { back: true },
+  //- { back: true },
+  //- { back: true }
+  ];
+  var count = 0;
+  while( listAnimation.length > 0 ) {
+  let data = listAnimation.shift();
+  setTimeout( function() {
+  if( 'back' in data ) {
+  pageFlip.prevPage();
+  } else {
+  pageFlip.gotoPage( data.id, data.animation );
+  }
+  }, 1500 * count);
+  count++;
+  }
+</script>
