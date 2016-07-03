@@ -122,6 +122,7 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
+          flatten: true,
           cwd: './',
           src: '<%= paths.sourceScripts %>/*.js',
           dest: '<%= paths.output %>/src/scripts'
@@ -199,6 +200,7 @@ module.exports = function(grunt) {
         },
         bsFiles: {
           src : [
+            '<%= paths.output %>/src/scripts/*.js',
             '<%= paths.output %>/src/styles/*.css',
             '<%= paths.output %>/*.html'
           ]

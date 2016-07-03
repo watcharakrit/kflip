@@ -25,11 +25,11 @@ var KFlip = function KFlip($objContext) {
   this.gotoPage = function (pageName, animationName) {
     newPage(pageName, animationName).then(function ($newPage) {
 
-      $newPage.removeClassAnimation(animationName);
+      removeClassAnimation($newPage, animationName);
 
       if (pageStack.length > 0) {
         var $currentPage = $main.querySelector('#page-' + pageStack[currentPage - 1].pageId);
-        $currentPage.addClassAnimation(animationName + '-out').then(function ($outpage) {
+        addClassAnimation($currentPage, animationName + '-out').then(function ($outpage) {
           $outpage.remove();
         });
       }
@@ -51,12 +51,13 @@ var KFlip = function KFlip($objContext) {
       pageStack.pop();
       var prevPageDate = pageStack[pageStack.length - 1];
       var pageName = prevPageDate.pageId;
+      console.log('prev');
       newPage(pageName, animationName + '-out').then(function ($newPage) {
 
-        $newPage.removeClassAnimation(animationName + '-out');
+        removeClassAnimation($newPage, animationName + '-out');
 
         var $outPage = $main.querySelector('#page-' + outPage);
-        $outPage.addClassAnimation(animationName).then(function ($outpage) {
+        addClassAnimation($outPage, animationName).then(function ($outpage) {
           $outpage.remove();
         });
 
@@ -89,30 +90,26 @@ var KFlip = function KFlip($objContext) {
     });
   };
 
-  Object.prototype.removeClassAnimation = function (animationName) {
-    var self = this;
+  function removeClassAnimation(obj, animationName) {
     return new Promise(function (resolve) {
-      self.addEventListener('webkitTransitionEnd', function () {
-        self.classList.remove('animationing');
-        resolve(self);
+      obj.addEventListener('webkitTransitionEnd', function () {
+        obj.classList.remove('animationing');
+        resolve(obj);
       });
 
-      self.classList.remove(animationName);
+      obj.classList.remove(animationName);
     });
-  };
+  }
 
-  Object.prototype.addClassAnimation = function (animationName) {
-    var self = this;
+  function addClassAnimation(obj, animationName) {
     return new Promise(function (resolve) {
-      self.addEventListener('webkitTransitionEnd', function () {
-        self.classList.remove('animationing');
-        resolve(self);
+      obj.addEventListener('webkitTransitionEnd', function () {
+        obj.classList.remove('animationing');
+        resolve(obj);
       });
 
-      self.classList.add(animationName);
+      obj.classList.add(animationName);
     });
-  };
+  }
 };
-
-console.log('test');
 //# sourceMappingURL=kflip.js.map
